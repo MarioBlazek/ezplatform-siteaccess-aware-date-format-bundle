@@ -1,0 +1,14 @@
+services:
+    marek_site_access_aware_format.twig_extension:
+        class: Marek\SiteAccessAwareDateFormatBundle\Twig\Extension\DateTimeFormatterExtension
+        arguments:
+            - '@marek_site_access_aware_format.formatter'
+        tags:
+            - { name: twig.extension }
+
+    marek_site_access_aware_format.formatter:
+        class: Marek\SiteAccessAwareDateFormatBundle\Core\SiteAccessAwareFormatter
+        arguments:
+            - '@ezpublish.locale.converter'
+            - "$formats;marek_site_access_aware_date_format$"
+            - "$languages$"

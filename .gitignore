@@ -1,0 +1,14 @@
+.idea/
+coverage/
+vendor/
+var/
+.tmp/
+composer.phar
+composer.lock
+phpunit.phar
+.php_cs.cache
+coverage.xml
+grunt.lock
+package-lock.json
+yarn.lock
+yarn-error.log

@@ -1,0 +1,48 @@
+{
+    "name": "marioblazek/ezplatform-siteaccess-aware-date-format-bundle",
+    "description": "This holds description for my example bundle that I'm working on",
+    "type": "ezplatform-bundle",
+    "keywords": [
+        "ezpublish",
+        "ezplatform",
+        "Mario Blažek",
+        "ezplatform-siteaccess-aware-date-format-bundle"
+    ],
+    "homepage": "https://github.com/MarioBlazek/ezplatform-siteaccess-aware-date-format-bundle",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Mario Blažek",
+            "homepage": "https://marioblazek.dev"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "ext-intl": "*",
+        "ezsystems/ezpublish-kernel": "^6.13"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "friendsofphp/php-cs-fixer": "^2.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "Marek\\SiteAccessAwareDateFormatBundle\\": "bundle"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Marek\\SiteAccessAwareDateFormatBundle\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+      "test": "@php vendor/bin/phpunit -c phpunit.xml --colors=always",
+      "fix-cs": "@php vendor/bin/php-cs-fixer fix",
+      "coverage": "@php -dzend_extension=xdebug.so vendor/bin/phpunit -c phpunit.xml --colors=always --coverage-clover=coverage.xml"
+    },
+    "extra": {
+          "branch-alias": {
+          "dev-master": "1.0.x-dev"
+        }
+    }
+}

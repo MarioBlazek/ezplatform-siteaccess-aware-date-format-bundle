@@ -52,6 +52,9 @@ class DefaultDateFormatterTest extends TestCase
         $this->formatter = new DefaultDateFormatter($this->localeConverter, $this->configResolver, $this->languages);
     }
 
+    /**
+     * @covers \Marek\SiteAccessAwareDateFormatBundle\Core\DefaultDateFormatter::format()
+     */
     public function testWithDefaultOption()
     {
         $date = $this->getDate();

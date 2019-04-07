@@ -41,6 +41,9 @@ class SiteAccessAwareFormatterTest extends TestCase
         $this->siteAccessAwareFormatter = new SiteAccessAwareFormatter($this->defaultFormatter, $this->configResolver);
     }
 
+    /**
+     * @covers \Marek\SiteAccessAwareDateFormatBundle\Core\SiteAccessAwareFormatter::format()
+     */
     public function testCustomFormatOption()
     {
         $date = $this->getDate();
@@ -61,6 +64,9 @@ class SiteAccessAwareFormatterTest extends TestCase
         );
     }
 
+    /**
+     * @covers \Marek\SiteAccessAwareDateFormatBundle\Core\SiteAccessAwareFormatter::format()
+     */
     public function testShouldThrowExceptionWhenFormatDoesNotExist()
     {
         $date = $this->getDate();
@@ -81,6 +87,9 @@ class SiteAccessAwareFormatterTest extends TestCase
         $this->siteAccessAwareFormatter->format($date, 'my_custom_format');
     }
 
+    /**
+     * @covers \Marek\SiteAccessAwareDateFormatBundle\Core\SiteAccessAwareFormatter::format()
+     */
     public function testShouldThrowExceptionWhenFormatsAreNotAvailable()
     {
         $date = $this->getDate();
@@ -95,6 +104,9 @@ class SiteAccessAwareFormatterTest extends TestCase
         $this->siteAccessAwareFormatter->format($date, 'my_custom_format');
     }
 
+    /**
+     * @covers \Marek\SiteAccessAwareDateFormatBundle\Core\SiteAccessAwareFormatter::format()
+     */
     public function testShouldCallDefaultFormatterInCaseWhenDefaultOptionsIsPassed()
     {
         $date = $this->getDate();

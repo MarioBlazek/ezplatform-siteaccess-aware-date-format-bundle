@@ -6,7 +6,7 @@ eZ Platform SiteAccessAwareDateFormatBundle
 [![Quality Score](https://img.shields.io/scrutinizer/g/MarioBlazek/ezplatform-siteaccess-aware-date-format-bundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/MarioBlazek/ezplatform-siteaccess-aware-date-format-bundle)
 [![Downloads](https://img.shields.io/packagist/dt/marioblazek/ezplatform-siteaccess-aware-date-format-bundle.svg?style=flat-square)](https://packagist.org/packages/marioblazek/ezplatform-siteaccess-aware-date-format-bundle/stats)
 [![Latest stable](https://img.shields.io/packagist/v/marioblazek/ezplatform-siteaccess-aware-date-format-bundle.svg?style=flat-square)](https://packagist.org/packages/marioblazek/ezplatform-siteaccess-aware-date-format-bundle)
-[![License](https://img.shields.io/packagist/l/marioblazek/ezplatform-siteaccess-aware-date-format-bundle.svg?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/github/license/MarioBlazek/ezplatform-siteaccess-aware-date-format-bundle.svg?style=flat-square)](LICENSE)
 
 This bundle reimplements `datetime` filter that was available in eZ Publish Legacy stack. More information about old filter can be found in official [documentation](https://doc.ez.no/eZ-Publish/Technical-manual/3.10/Reference/Template-operators/Formatting-and-internationalization/datetime).
 

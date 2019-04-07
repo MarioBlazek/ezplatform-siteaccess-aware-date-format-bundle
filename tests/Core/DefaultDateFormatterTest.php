@@ -53,6 +53,17 @@ class DefaultDateFormatterTest extends TestCase
     }
 
     /**
+     * @covers \Marek\SiteAccessAwareDateFormatBundle\Core\DefaultDateFormatter::__construct()
+     */
+    public function testInstantiation()
+    {
+        $this->assertInstanceOf(
+            DefaultDateFormatter::class,
+            new DefaultDateFormatter($this->localeConverter, $this->configResolver, $this->languages)
+        );
+    }
+
+    /**
      * @covers \Marek\SiteAccessAwareDateFormatBundle\Core\DefaultDateFormatter::format()
      */
     public function testWithDefaultOption()
@@ -64,6 +75,47 @@ class DefaultDateFormatterTest extends TestCase
         $this->configResolver->expects($this->once())
             ->method('hasParameter')
             ->willReturn(false);
+
+        $this->localeConverter->expects($this->once())
+            ->method('convertToPOSIX')
+            ->with('eng-GB')
+            ->willReturn('en_EN');
+
+        $this->assertEquals(
+            $formatter->format($date),
+            $this->formatter->format($date, 'default')
+        );
+    }
+
+    public function getDateFormats()
+    {
+        return [
+            ['short', IntlDateFormatter::SHORT, IntlDateFormatter::SHORT],
+            ['none', IntlDateFormatter::NONE, IntlDateFormatter::NONE],
+            ['full', IntlDateFormatter::FULL, IntlDateFormatter::FULL],
+            ['long', IntlDateFormatter::LONG, IntlDateFormatter::LONG],
+            ['medium', IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM],
+        ];
+    }
+
+    /**
+     * @covers \Marek\SiteAccessAwareDateFormatBundle\Core\DefaultDateFormatter::format()
+     *
+     * @dataProvider getDateFormats
+     */
+    public function testWithOptions($identifier, $value1, $value2)
+    {
+        $date = $this->getDate();
+
+        $formatter = new IntlDateFormatter('en_EN', $value1, $value2);
+
+        $this->configResolver->expects($this->once())
+            ->method('hasParameter')
+            ->willReturn(true);
+
+        $this->configResolver->expects($this->once())
+            ->method('getParameter')
+            ->willReturn(['format' => $identifier]);
 
         $this->localeConverter->expects($this->once())
             ->method('convertToPOSIX')

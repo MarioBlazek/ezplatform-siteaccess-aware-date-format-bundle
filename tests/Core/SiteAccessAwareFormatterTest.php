@@ -42,6 +42,17 @@ class SiteAccessAwareFormatterTest extends TestCase
     }
 
     /**
+     * @covers \Marek\SiteAccessAwareDateFormatBundle\Core\SiteAccessAwareFormatter::__construct()
+     */
+    public function testInstantiation()
+    {
+        $this->assertInstanceOf(
+            SiteAccessAwareFormatter::class,
+            new SiteAccessAwareFormatter($this->defaultFormatter, $this->configResolver)
+        );
+    }
+
+    /**
      * @covers \Marek\SiteAccessAwareDateFormatBundle\Core\SiteAccessAwareFormatter::format()
      */
     public function testCustomFormatOption()

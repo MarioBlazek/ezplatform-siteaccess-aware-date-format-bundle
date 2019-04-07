@@ -9,7 +9,9 @@ Bundle provides simple and easy to use Twig filter `datetime`. By default it wil
 {{ ez_field_value(content, 'my_date').date|datetime }}
 ```
 
-Which will format date by [IntlDateFormatter::SHORT](https://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants) format by default, or by any of this listed constants.
+Which will format date by `IntlDateFormatter::SHORT` format by default, or by any of this listed 
+[constants](https://www.php.net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants) 
+in case any of them is specified in overridden config.
 
 ```twig
 {{ ez_field_value(content, 'my_date').date|datetime('my_custom_format') }}

@@ -1,62 +1,64 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Marek\SiteAccessAwareDateFormatBundle\Core;
 
-use eZ\Publish\Core\MVC\Symfony\Locale\LocaleConverterInterface;
-use IntlDateFormatter;
-use DateTime;
+use DateTimeInterface;
+use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Marek\SiteAccessAwareDateFormatBundle\API\DateFormatter;
+use Marek\SiteAccessAwareDateFormatBundle\DependencyInjection\Configuration;
 use RuntimeException;
 
-class SiteAccessAwareFormatter
+final class SiteAccessAwareFormatter
 {
-    const FORMAT_DEFAULT = 'default';
+    /**
+     * @var \Marek\SiteAccessAwareDateFormatBundle\API\DateFormatter
+     */
+    private $defaultDateFormatter;
 
     /**
-     * @var LocaleConverterInterface
+     * @var \eZ\Publish\Core\MVC\ConfigResolverInterface
      */
-    protected $localeConverter;
+    private $configResolver;
 
     /**
-     * @var array
+     * SiteAccessAwareFormatter constructor.
+     *
+     * @param \Marek\SiteAccessAwareDateFormatBundle\API\DateFormatter $defaultDateFormatter
+     * @param \eZ\Publish\Core\MVC\ConfigResolverInterface $configResolver
      */
-    protected $formats;
-
-    /**
-     * @var array
-     */
-    protected $languages;
-
-    public function __construct(LocaleConverterInterface $localeConverter, array $formats, array $languages)
+    public function __construct(DateFormatter $defaultDateFormatter, ConfigResolverInterface $configResolver)
     {
-        $this->localeConverter = $localeConverter;
-        $this->formats = $formats;
-        dump($formats);
-        dump($languages);
-        $this->languages = $languages;
+        $this->defaultDateFormatter = $defaultDateFormatter;
+        $this->configResolver = $configResolver;
     }
 
-    public function format(DateTime $date, $dateFormatIdentifier)
+    /**
+     * @inheritdoc
+     */
+    public function format(DateTimeInterface $date, string $dateFormatIdentifier): string
     {
-        if ($dateFormatIdentifier === self::FORMAT_DEFAULT) {
-
-            $formatter = new IntlDateFormatter(
-                $this->localeConverter->convertToPOSIX($this->languages[0]),
-                IntlDateFormatter::SHORT,
-                IntlDateFormatter::SHORT
-            );
-
-            return $formatter->format($date);
-
+        if ($dateFormatIdentifier === DateFormatter::FORMAT_DEFAULT) {
+            return $this->defaultDateFormatter->format($date, $dateFormatIdentifier);
         }
 
-        if (in_array($dateFormatIdentifier, $this->formats)) {
+        if (!$this->configResolver->hasParameter('formats', Configuration::TREE_ROOT)) {
             throw new RuntimeException(
-                sprintf("Given datetime format %s does not exist in configuration.", $dateFormatIdentifier)
+                sprintf('Configuration %s is missing formats option.', Configuration::TREE_ROOT)
+            );
+        }
+
+        $formats = $this->configResolver->getParameter('formats', Configuration::TREE_ROOT);
+
+        if (!array_key_exists($dateFormatIdentifier, $formats)) {
+            throw new RuntimeException(
+                sprintf('Given datetime format %s does not exist in configuration.', $dateFormatIdentifier)
             );
         }
 
         return $date->format(
-            $this->formats[$dateFormatIdentifier]
+            $formats[$dateFormatIdentifier]
         );
     }
 }

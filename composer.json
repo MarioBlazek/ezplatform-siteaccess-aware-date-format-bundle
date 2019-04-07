@@ -1,6 +1,6 @@
 {
     "name": "marioblazek/ezplatform-siteaccess-aware-date-format-bundle",
-    "description": "This holds description for my example bundle that I'm working on",
+    "description": "This bundle reimplements datetime filter that was available in eZ Publish Legacy stack.",
     "type": "ezplatform-bundle",
     "keywords": [
         "ezpublish",

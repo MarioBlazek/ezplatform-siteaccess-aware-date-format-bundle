@@ -2,13 +2,20 @@ services:
     marek_site_access_aware_format.twig_extension:
         class: Marek\SiteAccessAwareDateFormatBundle\Twig\Extension\DateTimeFormatterExtension
         arguments:
-            - '@marek_site_access_aware_format.formatter'
+            - '@marek_site_access_aware_format.formatter.siteaccess'
         tags:
             - { name: twig.extension }
 
-    marek_site_access_aware_format.formatter:
+    marek_site_access_aware_format.formatter.siteaccess:
         class: Marek\SiteAccessAwareDateFormatBundle\Core\SiteAccessAwareFormatter
         arguments:
+            - '@marek_site_access_aware_format.formatter.default'
+            - "@ezpublish.config.resolver"
+
+
+    marek_site_access_aware_format.formatter.default:
+        class: Marek\SiteAccessAwareDateFormatBundle\Core\DefaultDateFormatter
+        arguments:
             - '@ezpublish.locale.converter'
-            - "$formats;marek_site_access_aware_date_format$"
+            - "@ezpublish.config.resolver"
             - "$languages$"

@@ -1,0 +1,61 @@
+dist: trusty
+# we don't need sudo
+sudo: false
+
+language: php
+
+# directories to cache
+cache:
+    directories:
+        - $HOME/.composer
+
+matrix:
+    # mark as finished before allow_failures are run
+    fast_finish: true
+    include:
+        - php: 7.1
+        - php: 7.2
+        - php: 7.3
+
+# test only master (+ pull requests)
+branches:
+    only:
+        - master
+
+# make sure to update composer to latest available version
+before_install:
+    - phpenv config-add travis.php.ini
+
+# install dependencies
+install:
+    - composer install
+
+# execute phpunit as the script command
+script:
+    - composer coverage
+
+# disable mail notifications
+notification:
+    email: false
+
+# reduce depth (history) of git checkout
+git:
+    depth: 1
+
+# enable scrutinizer
+after_script:
+    - wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+# send coverage to codecov.io
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
+
+# Slack notifications
+#notifications:
+#  email: false
+#  slack:
+#    rooms:
+#    - secure: "YOUR SLACK TOKEN HERE"
+#    on_success: change
+#    on_failure: always
+#    on_pull_requests: false

@@ -15,19 +15,17 @@
         beStrictAboutChangesToGlobalState="true"
 >
     <testsuites>
-        <testsuite name="MyExample\Tests">
-            <directory>tests/lib</directory>
-        </testsuite>
-        <testsuite name="MyExampleBundle\Tests">
-            <directory>tests/bundle</directory>
+        <testsuite name="SiteAccessAwareDate\Tests">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory suffix=".php">lib</directory>
             <directory suffix=".php">bundle</directory>
             <exclude>
-                <file>bundle/SomethingToExclude.php</file>
+                <file>bundle/DependencyInjection/Configuration.php</file>
+                <file>bundle/DependencyInjection/MarekSiteAccessAwareDateFormatExtension.php</file>
+                <file>bundle/Twig/Extension/DateTimeFormatterExtension.php</file>
             </exclude>
         </whitelist>
     </filter>

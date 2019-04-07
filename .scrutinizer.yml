@@ -5,6 +5,6 @@ filter:
         - vendor
 
 tools:
-    external_code_coverage:
-        timeout: 600
-        runs: 3
+    external_code_coverage: true
+    php_analyzer: true
+    sensiolabs_security_checker: true

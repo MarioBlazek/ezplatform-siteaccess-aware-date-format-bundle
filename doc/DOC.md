@@ -19,6 +19,50 @@ in case any of them is specified in overridden config.
 
 Will format date by `my_custom_format` which must be specified in configuration.
 
+### Date field type - examples
+
+eZ Platform Twig statements:
+
+```twig
+{{ ez_field_value(content, 'my_date').date|datetime }}
+```
+
+```twig
+{{ ez_field_value(content, 'my_date').date|datetime('my_custom_format') }}
+```
+
+In case of Netgen's Site API:
+
+```twig
+{{ content.fields.my_date.value.date|datetime }}
+```
+
+```twig
+{{ content.fields.my_date.value.date|datetime('my_custom_format') }}
+```
+
+### DateAndTime field type - examples
+
+eZ Platform Twig statements:
+ 
+ ```twig
+ {{ ez_field_value(content, 'my_date').value|datetime }}
+ ```
+ 
+ ```twig
+ {{ ez_field_value(content, 'my_date').value|datetime('my_custom_format') }}
+ ```
+ 
+ In case of Netgen's Site API:
+ 
+ ```twig
+ {{ content.fields.my_date.value.value|datetime }}
+ ```
+ 
+ ```twig
+ {{ content.fields.my_date.value.value|datetime('my_custom_format') }}
+ ```
+
 ## Configuration
 
 As default format `IntlDateFormatter::SHORT` is presumed, but other values can be set under defaults format configuration key.
@@ -40,3 +84,4 @@ marek_site_access_aware_date_format:
                 short_date: "Y"
 ```
 
+Under `formats` section, any valid format character from [documentation](https://www.php.net/manual/en/function.date.php#refsect1-function.date-parameters) can be specified.

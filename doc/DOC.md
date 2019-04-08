@@ -70,6 +70,8 @@ As default format `IntlDateFormatter::SHORT` is presumed, but other values can b
 This example config overrides default format for `eng` siteaccess and sets format to `IntlDateFormatter::LONG`, defines two custom formats for `eng`
 siteaccess and one custom format for `default`.
 
+Example configuration in `ezplatform.yml`:
+
 ```yaml
 marek_site_access_aware_date_format:
     system:

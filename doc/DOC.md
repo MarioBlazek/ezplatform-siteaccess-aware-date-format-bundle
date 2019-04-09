@@ -80,10 +80,10 @@ marek_site_access_aware_date_format:
                 format: 'long'
             formats:
                 long_date: "y.m.d"
-                short_date: "y.m."
+                my_custom_format: "y.m."
         default:
             formats:
-                short_date: "Y"
+                my_custom_format: "Y"
 ```
 
 Under `formats` section, any valid format character from [documentation](https://www.php.net/manual/en/function.date.php#refsect1-function.date-parameters) can be specified.

@@ -28,14 +28,14 @@ class MarekSiteAccessAwareDateFormatExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
 
-        $processor = new ConfigurationProcessor($container, 'marek_site_access_aware_date_format');
+        $processor = new ConfigurationProcessor($container, Configuration::TREE_ROOT);
         $configArrays = ['defaults', 'formats'];
 
         $scopes = array_merge(['default'], $container->getParameter('ezpublish.siteaccess.list'));
         foreach ($configArrays as $configArray) {
             $processor->mapConfigArray($configArray, $config);
             foreach ($scopes as $scope) {
-                $paramName = 'marek_site_access_aware_date_format' . '.' . $scope . '.' . $configArray;
+                $paramName = Configuration::TREE_ROOT . '.' . $scope . '.' . $configArray;
 
                 if (!$container->hasParameter($paramName)) {
                     continue;

@@ -14,7 +14,15 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  */
 class Configuration extends SiteAccessConfiguration
 {
+    /**
+     * @var string
+     */
     public const TREE_ROOT = 'marek_site_access_aware_date_format';
+
+    /**
+     * @var array
+     */
+    protected $validFormats = ['none', 'full', 'short', 'long', 'medium'];
 
     /**
      * {@inheritdoc}
@@ -22,7 +30,7 @@ class Configuration extends SiteAccessConfiguration
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('marek_site_access_aware_date_format');
+        $rootNode = $treeBuilder->root(self::TREE_ROOT);
 
         $nodeBuilder = $this->generateScopeBaseNode($rootNode);
 
@@ -34,7 +42,7 @@ class Configuration extends SiteAccessConfiguration
                         ->defaultValue('short')
                         ->cannotBeEmpty()
                         ->validate()
-                            ->ifNotInArray(['none', 'full', 'short', 'long', 'medium'])
+                            ->ifNotInArray($this->validFormats)
                             ->thenInvalid('Invalid default date format value provided.')
                         ->end()
                     ->end()

@@ -4,7 +4,7 @@ Installation instructions
 Requirements
 ------------
 
-* eZ Platform 1.13+
+* eZ Platform 1.0+ or 2.0+
 
 Installation steps
 ------------------

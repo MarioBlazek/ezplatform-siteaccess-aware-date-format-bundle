@@ -51,7 +51,7 @@ class Configuration extends SiteAccessConfiguration
             ->arrayNode('formats')
                 ->requiresAtLeastOneElement()
                 ->useAttributeAsKey('format')
-                    ->scalarPrototype()
+                    ->prototype('scalar')
                     ->end()
             ->end();
 

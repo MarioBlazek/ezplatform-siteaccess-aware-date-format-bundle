@@ -3,10 +3,10 @@ Documentation
 
 ## Usage
 
-Bundle provides simple and easy to use Twig filter `datetime`. By default it will use date format specified by given siteaccess locale.
+Bundle provides simple and easy to use Twig filter `m_datetime`. By default it will use date format specified by given siteaccess locale.
 
 ```twig
-{{ ez_field_value(content, 'my_date').date|datetime }}
+{{ ez_field_value(content, 'my_date').date|m_datetime }}
 ```
 
 Which will format date by `IntlDateFormatter::SHORT` format by default, or by any of this listed 
@@ -14,7 +14,7 @@ Which will format date by `IntlDateFormatter::SHORT` format by default, or by an
 in case any of them is specified in overridden config.
 
 ```twig
-{{ ez_field_value(content, 'my_date').date|datetime('my_custom_format') }}
+{{ ez_field_value(content, 'my_date').date|m_datetime('my_custom_format') }}
 ```
 
 Will format date by `my_custom_format` which must be specified in configuration.
@@ -24,21 +24,21 @@ Will format date by `my_custom_format` which must be specified in configuration.
 eZ Platform Twig statements:
 
 ```twig
-{{ ez_field_value(content, 'my_date').date|datetime }}
+{{ ez_field_value(content, 'my_date').date|m_datetime }}
 ```
 
 ```twig
-{{ ez_field_value(content, 'my_date').date|datetime('my_custom_format') }}
+{{ ez_field_value(content, 'my_date').date|m_datetime('my_custom_format') }}
 ```
 
 In case of Netgen's Site API:
 
 ```twig
-{{ content.fields.my_date.value.date|datetime }}
+{{ content.fields.my_date.value.date|m_datetime }}
 ```
 
 ```twig
-{{ content.fields.my_date.value.date|datetime('my_custom_format') }}
+{{ content.fields.my_date.value.date|m_datetime('my_custom_format') }}
 ```
 
 ### DateAndTime field type - examples
@@ -46,21 +46,21 @@ In case of Netgen's Site API:
 eZ Platform Twig statements:
  
  ```twig
- {{ ez_field_value(content, 'my_date').value|datetime }}
+ {{ ez_field_value(content, 'my_date').value|m_datetime }}
  ```
  
  ```twig
- {{ ez_field_value(content, 'my_date').value|datetime('my_custom_format') }}
+ {{ ez_field_value(content, 'my_date').value|m_datetime('my_custom_format') }}
  ```
  
  In case of Netgen's Site API:
  
  ```twig
- {{ content.fields.my_date.value.value|datetime }}
+ {{ content.fields.my_date.value.value|m_datetime }}
  ```
  
  ```twig
- {{ content.fields.my_date.value.value|datetime('my_custom_format') }}
+ {{ content.fields.my_date.value.value|m_datetime('my_custom_format') }}
  ```
 
 ## Configuration

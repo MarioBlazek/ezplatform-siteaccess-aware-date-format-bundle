@@ -29,7 +29,7 @@ final class DateTimeFormatterExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('datetime', [$this, 'format']),
+            new TwigFilter('m_datetime', [$this, 'format']),
         ];
     }
 
